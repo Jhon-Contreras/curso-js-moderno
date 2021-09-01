@@ -1,5 +1,5 @@
 // Objetos literales 
-let personaje = {
+const personaje = {
     nombre: 'Jhon',
     codeName: 'CalaverA',
     nivel: 134,
@@ -15,6 +15,11 @@ let personaje = {
     'mas-info': 'Info extra'
 
 };
+
+// bloquear edicion del objeto 
+
+// Object.freeze(personaje) 
+
 console.log(personaje);
 console.log('Nombre:', personaje.nombre);
 console.log('Nombre:', personaje['nombre']);
@@ -28,3 +33,25 @@ console.log('Nivel', personaje[x]);
 
 
 console.log('Mostrar mas info:', personaje['mas-info']);
+
+
+//mas detalles
+
+// borrar una propiedad del objeto 
+delete personaje.nivel;
+
+console.log(personaje);
+
+
+// Crear nueva propiedad en el objeto 
+personaje.casado = true;
+
+
+// trabajar objeto como si fuera un arreglo
+const entriesPares = Object.entries( personaje );
+console.log(entriesPares);
+
+
+// mas info 
+// https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object 
+
