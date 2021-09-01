@@ -50,7 +50,7 @@ const jhon = {
     skins: ['Mexicano 1', 'Tactico v3', 'Formal 2'],
 };
 
-const imprimePropiedades = ({nombre, codeName, nivel=200, skins}) =>{
+const imprimePropiedades = ({nombre, codeName, nivel=200, skins}) =>{ //se pueden definir valores a propiedades
     console.log({nombre});
     console.log({codeName});
     console.log({nivel});
