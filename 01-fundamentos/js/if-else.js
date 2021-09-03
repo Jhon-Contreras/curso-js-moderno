@@ -24,3 +24,11 @@ if (dia === 0) {
 } else{
     console.log('No es lunes, ni martes, ni domingo');
 }
+
+
+// sin usar if, else o switch, unicamente objetos o arreglos para imprimir el dia de la semana 
+dia = 3; // domingo es el dia 0
+
+const semana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+   
+console.log(semana[dia] || 'Dia no valido');
