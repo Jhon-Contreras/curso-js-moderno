@@ -50,12 +50,25 @@ const pedirCarta = () =>{
 
     console.log(deck);
     console.log(carta); // carta extraida del deck con .pop()
-    
+    return carta;
 }
 
 
 pedirCarta();
 
+// cual es el valor de la carta 
+const valorCarta = ( carta ) => {
+    
+    // extraer el primer valor del string carta
+    const valor = carta.substring(0, carta.length - 1); // utilizando el metodo substring, extraemos el ultimo valor de la carta
+    
+    return (isNaN(valor)) ? 
+            ( valor === 'A') ? 11 : 10  // Operador ternario para evaluar si es un As vale 11, caso contrario vale 10 (J, K, Q) 
+            : valor * 1; //transformar el valor de la carta a un numero
+ 
+}
 
+const valor = valorCarta('JD');
+console.log({valor});
 
 
