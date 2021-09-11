@@ -68,7 +68,7 @@ const valorCarta = ( carta ) => {
  
 }
 
-const valor = valorCarta('JD');
+const valor = valorCarta( pedirCarta() );
 console.log({valor});
 
 
