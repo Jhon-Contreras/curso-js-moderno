@@ -11,6 +11,22 @@
 let deck          = [];
 const tiposCartas = ['C', 'D', 'H', 'S'];
 const especiales  = ['A', 'J', 'Q', 'K'];
+
+// puntos del jugador 
+let puntosJugador = 0;
+// puntos del com 
+let puntosComputadora = 0;
+
+// botones acciones 
+const btnPedir = document.querySelector('#btnPedirCarta');
+const btnNuevoJuego = document.querySelector('#btnNuevoJuego');
+const btnDetener = document.querySelector('#btnDetener');
+
+// etiquetas small con puntos 
+const puntosHtml = document.getElementsByTagName('small');
+
+
+
 // funciona para crear deck de cartas 
 const crearDeck = () =>{
     for( let i = 2; i <=10; i++ ){ //el ciclo for inicializa en 2 (las cartas parten del 2), debe ser menor o igual a 10 (las cartas llegan hasta el numero 10)
@@ -48,8 +64,7 @@ const pedirCarta = () =>{
     }
     const carta = deck.pop(); //remueve el ultimo elemento del arreglo
 
-    console.log(deck);
-    console.log(carta); // carta extraida del deck con .pop()
+   
     return carta;
 }
 
@@ -68,7 +83,19 @@ const valorCarta = ( carta ) => {
  
 }
 
-const valor = valorCarta( pedirCarta() );
-console.log({valor});
+// EVENTOS
+// escuchamos el click mediante addEventListener 
+btnPedir.addEventListener('click', () => { //un callback, es una funcion ()=> que se envia como argumento
+    // tomar una carta al hacer click
+    const carta = pedirCarta();
 
+    // incrementar los puntos al hacer click
+    puntosJugador = puntosJugador + valorCarta( carta );
+    console.log(puntosJugador);
+    
+    puntosHtml[0].innerText = puntosJugador;
+
+    
+    
+});
 
