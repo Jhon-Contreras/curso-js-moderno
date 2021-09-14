@@ -25,6 +25,9 @@ const btnDetener = document.querySelector('#btnDetener');
 // etiquetas small con puntos 
 const puntosHtml = document.getElementsByTagName('small');
 
+// referencia a divs cartas 
+const divCartasJugador = document.querySelector('#jugador-cartas');
+const divCartasComputadora = document.querySelector('#computadora-cartas');
 
 
 // funciona para crear deck de cartas 
@@ -94,8 +97,22 @@ btnPedir.addEventListener('click', () => { //un callback, es una funcion ()=> qu
     console.log(puntosJugador);
     
     puntosHtml[0].innerText = puntosJugador;
-
     
+    // creamos la etiqueta img 
+    const imgCarta = document.createElement('img');
+    imgCarta.src = `assets/img/cartas/${carta}.png`; //carta dinamica
+    imgCarta.className = 'cartaImg'; // clase de las etiquetas img
+    // imgCarta.classList.add('cartaImg'); // otra alternativa para agregar clase
+    divCartasJugador.append( imgCarta );
+
+    // condiciones 
+    // evaluamos si el jugador tiene mas de 21 puntos 
+    if (puntosJugador > 21) {
+        console.warn('Perdiste');
+        btnPedir.disabled = true; //bloqueamos boton pedirCarta
+    } else if(puntosJugador === 21) {  // en caso el jugador logra 21, gana
+        console.warn('Ganaste');
+    }
     
 });
 
