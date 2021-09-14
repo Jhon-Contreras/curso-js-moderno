@@ -86,8 +86,56 @@ const valorCarta = ( carta ) => {
  
 }
 
-// EVENTOS
-// escuchamos el click mediante addEventListener 
+//Turno de la computadora
+
+const turnoComputadora = ( puntosMinimos )=>{
+
+    do {
+
+         // tomar una carta al hacer click
+        const carta = pedirCarta();
+
+        // incrementar los puntos al hacer click
+        puntosComputadora = puntosComputadora + valorCarta( carta );
+        console.log(puntosComputadora);
+        
+        puntosHtml[1].innerText = puntosComputadora;
+        
+        // creamos la etiqueta img 
+        const imgCarta = document.createElement('img');
+        imgCarta.src = `assets/img/cartas/${carta}.png`; //carta dinamica
+        imgCarta.className = 'cartaImg'; // clase de las etiquetas img
+        // imgCarta.classList.add('cartaImg'); // otra alternativa para agregar clase
+        divCartasComputadora.append( imgCarta );
+       
+        if (puntosMinimos > 21) {
+           
+            break;
+        }
+    } while ( (puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
+    
+    // mensajes 
+    setTimeout(()=>{
+        if ( puntosComputadora === puntosMinimos ) { // si los puntos son iguales, empate
+            swal(":(", "Nadie gana", "error");
+        } else if( puntosMinimos > 21){ // si los puntos minimos del jugador son mayores a 21, computadora gana
+            swal("Computadora gana", "Manco!!!!", "error");
+        } else if ( puntosComputadora > 21 ){ //si los puntos de computadora, son mayores a 21, jugador gana
+            swal("Ganaste", "Llegaste a 21", "success");
+        } else{
+            swal("Computadora gana", "Manco!!!!", "error"); //cualquier otra condición, es victoria de la computadora
+        }
+    }, 10);
+   
+       
+    
+}
+
+
+
+
+// EVENTOS mediante addEventListener 
+//  Evento click pedir carta 
 btnPedir.addEventListener('click', () => { //un callback, es una funcion ()=> que se envia como argumento
     // tomar una carta al hacer click
     const carta = pedirCarta();
@@ -108,11 +156,40 @@ btnPedir.addEventListener('click', () => { //un callback, es una funcion ()=> qu
     // condiciones 
     // evaluamos si el jugador tiene mas de 21 puntos 
     if (puntosJugador > 21) {
-        console.warn('Perdiste');
-        btnPedir.disabled = true; //bloqueamos boton pedirCarta
+       
+        btnPedir.disabled   = true; //bloqueamos boton pedirCarta
+        btnDetener.disabled = true; //bloqueamos boton detener
+        turnoComputadora( puntosJugador );
+
     } else if(puntosJugador === 21) {  // en caso el jugador logra 21, gana
-        console.warn('Ganaste');
+       
+        btnPedir.disabled   = true; //bloqueamos boton pedirCarta
+        btnDetener.disabled = true; //bloqueamos boton detener
+        turnoComputadora( puntosJugador );
     }
     
 });
 
+// Evento boton detener 
+
+btnDetener.addEventListener('click', ()=>{
+    btnPedir.disabled   = true; //bloqueamos boton pedirCarta
+    btnDetener.disabled = true; //bloqueamos boton detener
+    turnoComputadora( puntosJugador );
+});
+
+
+// Evento nuevo juego
+btnNuevoJuego.addEventListener('click', ()=>{
+
+    deck = []; //vaciamos el deck
+    deck = crearDeck(); // creamos un nuevo deck
+    puntosJugador = 0; // vaciamos los puntos
+    puntosComputadora = 0; // vaciamos los puntos
+    puntosHtml[0].innerText = 0; // borramos el puntaje en el html jugador
+    puntosHtml[1].innerText = 0; // borramos el puntaje en el html computadora
+    divCartasComputadora.innerHTML = ' '; // quitamos las imagenes de las cartas
+    divCartasJugador.innerHTML = ' '; // quitamos las imagenes de las cartas
+    btnPedir.disabled   = false; //activamos boton pedirCarta
+    btnDetener.disabled = false; //activamos boton detener
+})
