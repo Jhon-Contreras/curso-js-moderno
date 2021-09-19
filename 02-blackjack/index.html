@@ -27,15 +27,15 @@
         <div class="row">
             <div class="col-12 text-center" id="cont-btnes">
                 <button class="btn btn-danger mx-1" id="btnNuevoJuego">Nuevo Juego</button>
-                <button class="btn btn-primary mx-1" id="btnPedirCarta">Pedir Carta</button>
-                <button class="btn btn-primary mx-1" id="btnDetener">Detener</button>
+                <button class="btn btn-primary mx-1" id="btnPedirCarta" disabled="disabled">Pedir Carta</button>
+                <button class="btn btn-primary mx-1" id="btnDetener" disabled="disabled">Detener</button>
             </div>
         </div>
             <!-- jugador  -->
         <div class="row mt-5">
             <div class="col-12">
                 <h2 class="mb-4">Jugador - puntos: <small>0</small> </h2>
-                <div id="jugador-cartas" class="height-box">
+                <div id="jugador-cartas" class="height-box divCartas">
                    
                    
                 </div>
@@ -46,7 +46,7 @@
         <div class="row mt-5">
             <div class="col-12">
                 <h2 class="mb-4">Computadora - puntos: <small>0</small> </h2>
-                <div id="computadora-cartas" class="height-box">
+                <div id="computadora-cartas" class="height-box divCartas">
                    
                 </div>
             </div>
@@ -58,6 +58,10 @@
     <script src="assets/js/underscore.min.js"></script>
     <script src="assets/js/juego.js"></script>
     
+    <script>
+    //    console.log(miModulo);
 
+       miModulo.nuevoJuego();
+    </script>
 </body>
 </html>
