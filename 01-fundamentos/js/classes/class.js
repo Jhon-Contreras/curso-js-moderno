@@ -15,9 +15,23 @@ class Persona {
         this.codigo = codigo;
         this.frase  = frase;    
     }
+
+    // metodos 
+    quienSoy(){
+        console.log(`Soy ${ this.nombre } y mi identidad es ${ this.codigo }`);
+    }
+
+    miFrase(){
+        // llamamos un metodo dentro de otro 
+        this.quienSoy();
+        console.log(`${ this.codigo } dice: ${ this.frase }`);
+    }
 }
 
-const spiderMan = new Persona('Peter Parker', 'Spider', 'Soy tu amigable vecino spidy');
+const spiderMan = new Persona('Peter Parker', 'Spider Man', 'Soy tu amigable vecino spidy');
 const ironMan = new Persona('Tony Stark', 'Iron Man', 'Soy Iron Man');
 console.log(spiderMan);
 console.log(ironMan);
+
+spiderMan.miFrase();
+ironMan.miFrase();
