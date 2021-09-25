@@ -1,5 +1,3 @@
-
-// palabra reservada class, buena practica con upper camelcase 
 class Persona {
 
     /*
@@ -64,24 +62,28 @@ class Persona {
     }
 }
 
+// heredar clase 
+class Heroe extends Persona{
+    clan = 'Sin clan';
+    // creamos una nueva instancia de heroe 
+    constructor(nombre, codigo, frase){
+        /*
+        para llamar al constructor de la clase Persona
+        utilizamos super();
+        */
+       super(nombre, codigo, frase);
+        //    es una regla, que inmediatamente despues del constructor se llama al super(), cuando se utilice el this.
+        this.clan = 'Avengers';
+       
+    }
 
-const spiderMan = new Persona('Peter Parker', 'Spider Man', 'Soy tu amigable vecino spidy');
-const ironMan = new Persona('Tony Stark', 'Iron Man', 'Soy Iron Man');
+    quienSoy(){
+        console.log(`soy ${ this.nombre }, de ${ this.clan }`);
+        // si necesitamos llamar algo de la clase padre, usamos super.metodo();
+        super.quienSoy(); 
+    }
+}
 
-
-
-spiderMan.miFrase();
-// ironMan.miFrase();
-
-// si es un set, no se llama con parentesis 
-spiderMan.setComidaFavorita = 'El pie de cereza de la tía May';
-
-
-// console.log(spiderMan);
-// console.log(spiderMan.getComidaFavorita);
-
-console.log('Conteo statico', Persona._conteo);
-console.log(Persona.conteo);
-Persona.mensaje();
-
-
+const spiderMan = new Heroe('Peter Parker', 'Spider Man', 'Soy tu amigable vecino spidy');
+console.log(spiderMan);
+spiderMan.quienSoy();
