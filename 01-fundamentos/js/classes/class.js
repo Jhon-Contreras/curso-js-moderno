@@ -11,6 +11,17 @@ class Persona {
     */ 
 
     // propiedades de clase 
+
+    // propiedad statica para identificar el numero de instancias de la clase 
+    static _conteo = 0; //el guion bajo no influye en nada
+    // static get para contar instancias 
+    static get conteo(){
+        return Persona._conteo + ' Instancias';
+    }
+    static mensaje(){
+        console.log('Hola a todos, soy un metodo stático');
+    }
+
     nombre = ' ';
     codigo = ' ';
     frase  = ' ';
@@ -24,6 +35,9 @@ class Persona {
         this.nombre = nombre;
         this.codigo = codigo;
         this.frase  = frase;    
+
+        // llamamos al conteo de instancias 
+        Persona._conteo ++;
     }
 
     // set y get 
@@ -53,6 +67,7 @@ const spiderMan = new Persona('Peter Parker', 'Spider Man', 'Soy tu amigable vec
 const ironMan = new Persona('Tony Stark', 'Iron Man', 'Soy Iron Man');
 
 
+
 spiderMan.miFrase();
 // ironMan.miFrase();
 
@@ -60,5 +75,11 @@ spiderMan.miFrase();
 spiderMan.setComidaFavorita = 'El pie de cereza de la tía May';
 
 
-console.log(spiderMan);
-console.log(spiderMan.getComidaFavorita);
+// console.log(spiderMan);
+// console.log(spiderMan.getComidaFavorita);
+
+console.log('Conteo statico', Persona._conteo);
+console.log(Persona.conteo);
+Persona.mensaje();
+
+
