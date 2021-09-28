@@ -1,5 +1,8 @@
 
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin    = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+
 // archivo de configuracion webpack 
 module.exports = {
     mode : 'development',
@@ -19,7 +22,13 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader']
+                exclude: /styles.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            },
+            {
+                test: /styles.css$/,
+                use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+
             }
         ]
     },
@@ -29,6 +38,10 @@ module.exports = {
             template: './src/index.html',
             filename: './index.html',
             inject: 'body'
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[fullhash].css',
+            ignoreOrder: false
         }),
     ]
 }
