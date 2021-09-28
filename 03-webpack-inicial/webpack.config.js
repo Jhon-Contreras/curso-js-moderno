@@ -16,6 +16,10 @@ module.exports = {
                     sources: false,
                     minimize: false // html minimizado = true
                 }
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
             }
         ]
     },

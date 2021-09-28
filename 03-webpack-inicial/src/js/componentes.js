@@ -1,4 +1,7 @@
 
+// importar archivo css propio del componente 
+import '../css/componentes.css';
+
 // funcion saludar 
 // para exportar una function, usamos la palabra reservada export 
 export const saludar = (nombre) => {
