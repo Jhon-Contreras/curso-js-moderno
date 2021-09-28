@@ -40,7 +40,7 @@ module.exports = {
             inject: 'body'
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].[fullhash].css',
+            filename: '[name].[fullhash].css', //[name].[fullhash].css para versiones 
             ignoreOrder: false
         }),
     ]
