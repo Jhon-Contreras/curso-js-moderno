@@ -1,7 +1,9 @@
 
-import { saludar } from './js/componentes';
+
 import './styles.css';
 
-const nombre = 'Webpack';
+import { Todo } from './classes/todo.class';
 
-saludar( nombre );
+const tarea = new Todo('Aprender JS');
+
+console.log(tarea);
