@@ -1,22 +1,28 @@
+// Referencias html 
 
-// importar archivo css propio del componente 
-import '../css/componentes.css';
-// import webpacklogo from '../assets/img/webpack-logo.png';
+const ulTodoList = document.querySelector('.todo-list'); //instanciamos al ul que contiene las listas
 
+// funcion crear todo, recibimos un todo 
+export const crearTodoHtml = ( todo ) => {
 
-// funcion saludar 
-// para exportar una function, usamos la palabra reservada export 
-export const saludar = (nombre) => {
-    console.log('Creando etiqueta h1...');
+    // creamos el html del li 
+    // mediante condición ternaria, decimos si todo es completado, que agregue completed a la clase y checked al input
+    // en caso que no esté completado, dejamos  vacio en ambos campos ' ' 
+    const htmlTodo = `
+                    <li class="${ (todo.completado) ? 'completed' : '' }" data-id="${ todo.id }"> 
+						<div class="view">
+							<input class="toggle" type="checkbox" ${ (todo.completado) ? 'checked' : '' }> 
+							<label>${todo.tarea}</label>
+							<button class="destroy"></button>
+						</div>
+						<input class="edit" value="Create a TodoMVC template">
+					</li>`
+    
+    const div = document.createElement('div'); //creamos un div para poder incrustar el li en la lista
+    div.innerHTML = htmlTodo;
 
-   
+    ulTodoList.append(div.firstElementChild); //Insertar el primer hijo (li ya creado)
 
-
-
-    // img 
-    // console.log(webpacklogo);
-    // const img = document.createElement('img');
-    // img.src = webpacklogo;
-    // document.body.append( img );
+    return div.firstElementChild;
 
 }
