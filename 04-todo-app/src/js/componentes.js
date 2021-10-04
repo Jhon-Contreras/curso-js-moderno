@@ -2,9 +2,13 @@ import { Todo } from "../classes";
 import { todoList } from "../index";
 
 // Referencias html 
-const ulTodoList = document.querySelector('.todo-list'); //instanciamos al ul que contiene las listas
-const txtInput = document.querySelector('.new-todo'); // input nuevo Todo
+const ulTodoList           = document.querySelector('.todo-list'); //instanciamos al ul que contiene las listas
+const txtInput             = document.querySelector('.new-todo'); // input nuevo Todo
 const btnBorrarCompletados = document.querySelector('.clear-completed'); // boton borrar completados
+const ulFiltros            = document.querySelector('.filters'); // botones filtros 
+const ahrefFiltros         = document.querySelectorAll('.filtro'); // ahref filtros 
+
+export const countTodo = document.querySelector('.todo-count');  // item contador
 
 
 
@@ -26,12 +30,13 @@ export const crearTodoHtml = ( todo ) => {
     
     const div = document.createElement('div'); //creamos un div para poder incrustar el li en la lista
     div.innerHTML = htmlTodo;
-
+    
     ulTodoList.append(div.firstElementChild); //Insertar el primer hijo (li ya creado)
-
+   
     return div.firstElementChild;
 
 }
+
 
 // Eventos 
 // evento enter al crear un Todo 
@@ -99,3 +104,55 @@ btnBorrarCompletados.addEventListener('click', () =>{
     }
 
 });
+
+// eventos botones filtros 
+ulFiltros.addEventListener('click', (event)=>{
+
+    // Const que contiene el texto de el elemento de los filtros 
+    // event.target.text = event.target es el a href, event.target.text es el texto del href 
+    const filtro = event.target.text;
+    // si el filtro no existe entonces hacemos un return para no hacer nada, esto para cuando se selecciona fuera de los botones del ul filters 
+    if (!filtro) return;
+
+
+    
+    for( const elemento of ulTodoList.children ){
+        
+        // removemos la clase hidden (establecida en css) 
+        elemento.classList.remove('hidden');
+        // constante para definir si los elementos contienen la clase completed 
+        const completado = elemento.classList.contains('completed');
+
+        // barrimos cada a href y borramos la clase selected 
+        ahrefFiltros.forEach( elem => elem.classList.remove('selected'));
+        // esto hace referencia al a href (no al texto como antes ) 
+        event.target.classList.add('selected');
+
+        // switch para controlar las decisiones, evaluando mediante el filtro actual (completado, pendientes) 
+        switch( filtro ) {
+            // si el texto que viene en el filtro es Pendientes 
+            case 'Pendientes':
+                if ( completado ) {
+                    // ocultamos los items que contengan este texto 
+                    elemento.classList.add('hidden')
+                   
+                }
+            break;
+
+             // si el texto que viene en el filtro es Completados
+            case 'Completados':
+                // lo contrario de completado, o en este caso, sin class completed 
+                if ( !completado ) {
+                    // ocultamos los items que contengan este texto 
+                    elemento.classList.add('hidden')
+                    
+                }
+            break;
+
+            // como no es ninguna de estas dos, remueve la clase hidden de todos los elementos en la linea 114 
+        }
+
+    }
+});
+
+

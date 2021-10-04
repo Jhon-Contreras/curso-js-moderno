@@ -1,18 +1,20 @@
 import { Todo } from "./todo.class";
+import { countTodo } from "../js/componentes"; // importamos la const countTodo
 
 export class TodoList {
     
     // constructor clase TodoList
     constructor( ){
 
-        // this.todos = [];
+ 
         this.cargarLocalStorage()
-        
+        this.countTodo()
     }
     // metodo nuevo todo 
     nuevoTodo( todo ){
         this.todos.push(todo);
         this.guardarLocalStorage();
+        this.countTodo()
     }
 
     // metodo eliminar todo mediante id 
@@ -21,6 +23,7 @@ export class TodoList {
         // regresamos un nuevo arreglo excluyendo el todo que coincida con el id 
         this.todos = this.todos.filter( todo => todo.id != id );
         this.guardarLocalStorage();
+        this.countTodo()
     }
     
     // metodo todo completado, mediante id 
@@ -34,6 +37,7 @@ export class TodoList {
                 // en caso de que todo completado sea true, lo dejamos en false y viceversa
                 todo.completado = !todo.completado;
                 this.guardarLocalStorage();
+                this.countTodo()
                 break;
             }
         }
@@ -74,6 +78,18 @@ export class TodoList {
         //el .map permite barrer cada uno de los elementos que estan dentro de un arreglo y retornar un nuevo arreglo mutado
         //hacemos que this.todos sea igual a un arreglo mutado, que recibe esta nueva instancia de los todos desde el metodo  static fromJson
         this.todos = this.todos.map( Todo.fromJson )
+    }
+
+    countTodo() {
+        let pendientes = 0; //inicializamos pendientes en 0
+        let countBox = countTodo.firstElementChild; //traemos la const countTodo y seleccionamos el primer hijo, en este caso la tag strong
+        // recorremos la lista de todos 
+        for (let todo of this.todos) {
+            // si todo.completado es false, entonces pendientes ++, caso contrario es null
+            (todo.completado === false) ? pendientes++ : null;
+        }
+        // añadimos el numero de pendientes al elemento del html 
+        countBox.innerHTML = pendientes;
     }
 
 }

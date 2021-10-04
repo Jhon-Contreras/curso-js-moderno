@@ -6,6 +6,7 @@ import { crearTodoHtml } from './js/componentes';
 
 
 
+
 export const todoList = new TodoList();
 
 
@@ -14,3 +15,4 @@ export const todoList = new TodoList();
 // todos es el arreglo que contiene los todos 
 // el forEach regresa el primer argumento de crearTodoHtml 
 todoList.todos.forEach( crearTodoHtml);
+
