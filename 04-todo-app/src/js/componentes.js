@@ -31,7 +31,7 @@ export const crearTodoHtml = ( todo ) => {
 }
 
 // Eventos 
-
+// evento enter al crear un Todo 
 txtInput.addEventListener('keyup', (event) => {
     // event.keycode sirve para detectar las teclas presionadas por el usuario,
     // event.keycode === 13 es el keycode de la tecla enter 
@@ -51,3 +51,24 @@ txtInput.addEventListener('keyup', (event) => {
     }
 
 });
+
+// evento completar Todo y borrar Todo
+
+ulTodoList.addEventListener('click', ()=>{
+    const nombreElemento = event.target.localName;//con esto identificamos en que parte hicimos click
+    const todoElemento = event.target.parentElement.parentElement; //identificamos el elemento parent para obtener solo el li seleccionado
+    const todoId = todoElemento.getAttribute('data-id'); //obtenemos el atributo del html
+    // click en el check 
+    if (nombreElemento.includes('input') ) {
+        // llamamos al metodo marcarCompletado y marcamos como completado el Todo 
+        todoList.marcarCompletado( todoId );
+        // agregamos la clase css completed
+        todoElemento.classList.toggle('completed');
+    } else if(nombreElemento.includes('button')){ // si clickeanmos el boton eliminar 
+        // borramos el todo de acuerdo al id del Todo 
+        todoList.eliminarTodo(todoId);
+        // además, removemos el elemento en cuestion 
+        ulTodoList.removeChild(todoElemento);
+    }
+   console.log(todoList);
+})
