@@ -1,6 +1,9 @@
-// Referencias html 
+import { Todo } from "../classes";
+import { todoList } from "../index";
 
+// Referencias html 
 const ulTodoList = document.querySelector('.todo-list'); //instanciamos al ul que contiene las listas
+const txtInput = document.querySelector('.new-todo');
 
 // funcion crear todo, recibimos un todo 
 export const crearTodoHtml = ( todo ) => {
@@ -26,3 +29,25 @@ export const crearTodoHtml = ( todo ) => {
     return div.firstElementChild;
 
 }
+
+// Eventos 
+
+txtInput.addEventListener('keyup', (event) => {
+    // event.keycode sirve para detectar las teclas presionadas por el usuario,
+    // event.keycode === 13 es el keycode de la tecla enter 
+    // condicion para evaluar si el event.keycode === 13 entonces la persona presionó enter y si está vacio el campo
+
+    if ( event.keyCode === 13 && txtInput.value.length > 0) {
+        console.log(txtInput.value);
+        // creamos el nuevo Todo 
+        const nuevoTodo = new Todo( txtInput.value );
+        // llamamos el metodo del todoList nuevoTodo 
+        todoList.nuevoTodo( nuevoTodo);
+        
+        // llamamos al metodo crearTodoHtml 
+        crearTodoHtml( nuevoTodo );
+        // limpiamos el campo 
+        txtInput.value = ' ';
+    }
+
+});
