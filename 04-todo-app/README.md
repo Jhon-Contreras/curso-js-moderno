@@ -1,8 +1,8 @@
 
-# Webpack starter
-<img src="https://raw.githubusercontent.com/Jhon-Contreras/webpack-starter/main/src/assets/img/webpack-logo.png"> 
+# TODO APP
 
-Este es el proyecto inicial para crear aplicaciones utilizando webpack.
+
+Proyecto creación app TODO LIST
 
 ### Notas
 Deben reconstruir los modulos de Node
