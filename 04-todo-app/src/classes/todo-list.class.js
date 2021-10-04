@@ -15,6 +15,7 @@ export class TodoList {
     // metodo eliminar todo mediante id 
     eliminarTodo( id ){
         // barremos los todos con filter 
+        // regresamos un nuevo arreglo excluyendo el todo que coincida con el id 
         this.todos = this.todos.filter( todo => todo.id != id )
     }
     
@@ -36,7 +37,8 @@ export class TodoList {
 
     // metodo para eliminar todo completado 
     eliminarCompletados(){
-
+        // necesitamos todos los todos NO completados !todo.completado (negacion)
+        this.todos = this.todos.filter( todo => !todo.completado )
     }
 
 }

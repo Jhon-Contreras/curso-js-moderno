@@ -3,7 +3,8 @@ import { todoList } from "../index";
 
 // Referencias html 
 const ulTodoList = document.querySelector('.todo-list'); //instanciamos al ul que contiene las listas
-const txtInput = document.querySelector('.new-todo');
+const txtInput = document.querySelector('.new-todo'); // input nuevo Todo
+const btnBorrarCompletados = document.querySelector('.clear-completed'); // boton borrar completados
 
 // funcion crear todo, recibimos un todo 
 export const crearTodoHtml = ( todo ) => {
@@ -58,17 +59,41 @@ ulTodoList.addEventListener('click', ()=>{
     const nombreElemento = event.target.localName;//con esto identificamos en que parte hicimos click
     const todoElemento = event.target.parentElement.parentElement; //identificamos el elemento parent para obtener solo el li seleccionado
     const todoId = todoElemento.getAttribute('data-id'); //obtenemos el atributo del html
+    
     // click en el check 
     if (nombreElemento.includes('input') ) {
         // llamamos al metodo marcarCompletado y marcamos como completado el Todo 
         todoList.marcarCompletado( todoId );
         // agregamos la clase css completed
         todoElemento.classList.toggle('completed');
+
     } else if(nombreElemento.includes('button')){ // si clickeanmos el boton eliminar 
-        // borramos el todo de acuerdo al id del Todo 
+      
+        // borramos el todo de acuerdo al id del Todo llamando al meotodo eliminarTodo
         todoList.eliminarTodo(todoId);
         // además, removemos el elemento en cuestion 
         ulTodoList.removeChild(todoElemento);
-    }
+
+    } 
    console.log(todoList);
 })
+
+// evento borrar todos los completados 
+
+btnBorrarCompletados.addEventListener('click', () =>{
+    
+    todoList.eliminarCompletados();
+    // hacemos referencia a todos los hijos que tiene el ulTodoList 
+    //empezaremos desde la ultima posicion para no alterar los indices de los demás Todo's (length-1)
+    for(let i = ulTodoList.children.length - 1; i >= 0; i--){
+        // creamos una constante del elemento hijo en el indice i 
+        const elemento = ulTodoList.children[i];
+        
+        // preguntamos si el elemento hijo contiene la clase 'completed' en su etiqueta 
+        if (elemento.classList.contains('completed') ) {
+            // si la tiene, removemos el elemento 
+           ulTodoList.removeChild(elemento);
+        } 
+    }
+
+});
