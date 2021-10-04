@@ -6,6 +6,8 @@ const ulTodoList = document.querySelector('.todo-list'); //instanciamos al ul qu
 const txtInput = document.querySelector('.new-todo'); // input nuevo Todo
 const btnBorrarCompletados = document.querySelector('.clear-completed'); // boton borrar completados
 
+
+
 // funcion crear todo, recibimos un todo 
 export const crearTodoHtml = ( todo ) => {
 

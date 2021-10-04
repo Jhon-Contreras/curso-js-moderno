@@ -1,3 +1,4 @@
+import { Todo } from "./todo.class";
 
 export class TodoList {
     
@@ -68,6 +69,11 @@ export class TodoList {
         // version limpia ternaria 
         // si this.todos es igual a esto             has   esto                            caso contrario devuelve el arreglo de todos vacio 
         this.todos = (localStorage.getItem('todo') ? JSON.parse(localStorage.getItem('todo')) : [])
+
+        // reconstruimos la instancia en localStorage 
+        //el .map permite barrer cada uno de los elementos que estan dentro de un arreglo y retornar un nuevo arreglo mutado
+        //hacemos que this.todos sea igual a un arreglo mutado, que recibe esta nueva instancia de los todos desde el metodo  static fromJson
+        this.todos = this.todos.map( Todo.fromJson )
     }
 
 }
