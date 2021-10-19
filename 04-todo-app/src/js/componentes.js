@@ -7,8 +7,7 @@ const txtInput             = document.querySelector('.new-todo'); // input nuevo
 const btnBorrarCompletados = document.querySelector('.clear-completed'); // boton borrar completados
 const ulFiltros            = document.querySelector('.filters'); // botones filtros 
 const ahrefFiltros         = document.querySelectorAll('.filtro'); // ahref filtros 
-
-export const countTodo = document.querySelector('.todo-count');  // item contador
+export const countTodo     = document.querySelector('.todo-count');  // item contador con export para usar instancia en la clase todo-list
 
 
 
@@ -19,7 +18,7 @@ export const crearTodoHtml = ( todo ) => {
     // mediante condición ternaria, decimos si todo es completado, que agregue completed a la clase y checked al input
     // en caso que no esté completado, dejamos  vacio en ambos campos ' ' 
     const htmlTodo = `
-                    <li class="${ (todo.completado) ? 'completed' : '' }" data-id="${ todo.id }"> 
+                    <li class="li-item ${ (todo.completado) ? 'completed' : '' }" data-id="${ todo.id }"> 
 						<div class="view">
 							<input class="toggle" type="checkbox" ${ (todo.completado) ? 'checked' : '' }> 
 							<label>${todo.tarea}</label>
@@ -46,7 +45,7 @@ txtInput.addEventListener('keyup', (event) => {
     // condicion para evaluar si el event.keycode === 13 entonces la persona presionó enter y si está vacio el campo
 
     if ( event.keyCode === 13 && txtInput.value.length > 0) {
-        console.log(txtInput.value);
+        // console.log(txtInput.value);
         // creamos el nuevo Todo 
         const nuevoTodo = new Todo( txtInput.value );
         // llamamos el metodo del todoList nuevoTodo 
@@ -61,7 +60,6 @@ txtInput.addEventListener('keyup', (event) => {
 });
 
 // evento completar Todo y borrar Todo
-
 ulTodoList.addEventListener('click', ()=>{
     const nombreElemento = event.target.localName;//con esto identificamos en que parte hicimos click
     const todoElemento = event.target.parentElement.parentElement; //identificamos el elemento parent para obtener solo el li seleccionado
@@ -82,7 +80,7 @@ ulTodoList.addEventListener('click', ()=>{
         ulTodoList.removeChild(todoElemento);
 
     } 
-   console.log(todoList);
+//    console.log(todoList);
 })
 
 // evento borrar todos los completados 
@@ -154,5 +152,3 @@ ulFiltros.addEventListener('click', (event)=>{
 
     }
 });
-
-

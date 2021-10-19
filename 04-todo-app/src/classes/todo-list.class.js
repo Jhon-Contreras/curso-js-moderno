@@ -1,5 +1,5 @@
 import { Todo } from "./todo.class";
-import { countTodo } from "../js/componentes"; // importamos la const countTodo
+import { countTodo } from "../js/componentes"; // importamos la const countTodo que viene de componentes
 
 export class TodoList {
     
@@ -43,7 +43,7 @@ export class TodoList {
         }
 
     }
-
+ 
     // metodo para eliminar todo completado 
     eliminarCompletados(){
         // necesitamos todos los todos NO completados !todo.completado (negacion)
