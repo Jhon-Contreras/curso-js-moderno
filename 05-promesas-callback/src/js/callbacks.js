@@ -21,13 +21,13 @@ export const buscarHeroe = ( id, callback ) =>{
  
     const heroe = heroes[id]; //el id es capi
 
-    if ( heroe ){   
+    if ( heroe ){   //si viene un heroe, enviamos el null (que representa al error) y enviamos el heroe como argumento
         callback(null, heroe);
     } else {
-        //error
+        //si no coincide el heroe, enviamos el error
         callback(`No existe un heroe con el id ${ id }`); //enviar error de callback
     }
 
-    // callback(heroe) //llamamos al callback, y enviamos al heroe encontrado como argumento
+
 
 }
