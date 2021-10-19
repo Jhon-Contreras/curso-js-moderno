@@ -1,7 +1,13 @@
-
-import { saludar } from './js/componentes';
 import './styles.css';
 
-const nombre = 'Webpack';
+import { buscarHeroe } from './js/callbacks';
 
-saludar( nombre );
+const heroId = 'capi';
+
+// callbakcs: enviar funcion como argumento 
+
+buscarHeroe( heroId, (heroe) =>{
+    console.log(heroe);
+});
+
+console.log('Fin de programa');
