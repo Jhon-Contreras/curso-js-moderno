@@ -21,6 +21,13 @@ export const buscarHeroe = ( id, callback ) =>{
  
     const heroe = heroes[id]; //el id es capi
 
-    callback(heroe) //llamamos al callback, y enviamos al heroe encontrado como argumento
+    if ( heroe ){   
+        callback(null, heroe);
+    } else {
+        //error
+        callback(`No existe un heroe con el id ${ id }`); //enviar error de callback
+    }
+
+    // callback(heroe) //llamamos al callback, y enviamos al heroe encontrado como argumento
 
 }
