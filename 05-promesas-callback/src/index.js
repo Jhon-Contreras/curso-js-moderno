@@ -28,8 +28,19 @@ const heroeId2 = 'iron'
 // then = todo sucede correctamente 
 // catch = cuando hay errores 
 // finally = es usado para limpiezas y siempre se ejecuta después del then o el catch 
-buscarHeroe( heroeId1).then( heroe =>{
-    console.log(`Enviando a ${ heroeId1 } a la misión`);
+
+
+// buscarHeroe( heroeId1).then( heroe =>{
+//     console.log(`Enviando a ${ heroeId1 } a la misión`);
+// });
+
+// Promise.all 
+
+Promise.all([ buscarHeroe(heroeId1), buscarHeroe(heroeId2) ])
+    .then( ([heroe1, heroe2]) =>{
+    
+    console.log(`Enviando a ${ heroe1.nombre } y a ${ heroe2.nombre } a la misión`);
+
 });
 
 console.log('Fin de programa');
