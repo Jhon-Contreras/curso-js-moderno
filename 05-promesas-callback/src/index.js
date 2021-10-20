@@ -1,5 +1,5 @@
 import { buscarHeroe, promesaLenta, promesaMedia, promesaRapida, buscarHeroeAsync } from './js/promesas';
-
+import { obtenerHeroesArr } from './js/await';
 
 import './styles.css';
 
@@ -21,3 +21,9 @@ buscarHeroe('capi2')
 buscarHeroeAsync('iron2')
     .then( heroe => console.log(heroe))
     .catch( console.warn )
+
+
+
+// Await 
+
+obtenerHeroesArr().then(console.table)

@@ -33,7 +33,12 @@ export const buscarHeroe = (id) =>{
 
 }
 
+//
 // FORMA ASYNC 
+//
+
+
+
 // async = Por defecto estamos regresando una nueva promesa 
 // async toma una funcion y retorna una nueva promesa que resuelve el valor del return 
 export const buscarHeroeAsync = async(id) =>{
