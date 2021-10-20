@@ -33,6 +33,24 @@ export const buscarHeroe = (id) =>{
 
 }
 
+// FORMA ASYNC 
+// async = Por defecto estamos regresando una nueva promesa 
+// async toma una funcion y retorna una nueva promesa que resuelve el valor del return 
+export const buscarHeroeAsync = async(id) =>{
+    const heroe = heroes[id];
+
+    if(heroe){
+       return heroe; //con async retornamos el heroe, es igual al resolve(heroe)
+    } else{
+        // throw Error(`No existe un heroe con el id ${ id }`); //para errores mas amplios
+        throw `No existe un heroe con el id ${ id }`; //manejo de errores
+    }
+
+
+
+}
+
+
 
 const promesaLenta = new Promise( (resolve, reject) => {
 
@@ -47,7 +65,7 @@ const promesaMedia = new Promise( (resolve, reject) => {
 });
 const promesaRapida = new Promise( (resolve, reject) => {
 
-    setTimeout( () => reject('Promesa rápida'), 1000)
+    setTimeout( () => resolve('Promesa rápida'), 1000)
 
 });
 
