@@ -20,3 +20,22 @@ export const obtenerHeroesArr = async() => {
     // manera mas elegante 
     return await Promise.all(heroesIds.map( buscarHeroe ));
 }
+
+// manejo de errores con await 
+export const obtenerHeroesAwait = async(id) =>{
+  try {
+
+    const heroe = await buscarHeroeAsync(id);
+    return heroe;
+
+  } catch (err) {
+      
+    console.log('Catch !!');
+    // throw err;
+    return {
+        nombre: 'Sin nombre',
+        poder: 'Sin poder'
+    }
+
+  }
+}
