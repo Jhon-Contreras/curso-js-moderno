@@ -1,6 +1,7 @@
 // petición http 
 // url de la api 
-const jokeUrl = 'https://api.chucknorris.io/jokes/random';
+const jokeUrl      = 'https://api.chucknorris.io/jokes/random';
+const usuariosUrl = 'https://reqres.in/api/users?page=2';
 
 // metodo para obtener los chistes desde la api con fetch 
 const obtenerChiste = async() =>{
@@ -21,8 +22,27 @@ const obtenerChiste = async() =>{
    
 }
 
+// obtener usuario 
+
+const obtenerUsuario = async() =>{
+    try {
+        
+        const resp = await fetch(usuariosUrl);
+        if(!resp.ok) throw 'No se pudo realizar la petición http';
+
+        const {data:usuarios} = await resp.json();
+        return usuarios;
+ 
+
+    } catch (err) {
+        throw err;
+    }
+}
+
+
 
 // exportamos la funcion obtenerChiste 
 export{
-    obtenerChiste
+    obtenerChiste,
+    obtenerUsuario
 }
