@@ -23,7 +23,12 @@ buscarHeroeAsync('iron2')
     .catch( console.warn )
 
 
-
+console.time('await');
 // Await 
 
-obtenerHeroesArr().then(console.table)
+obtenerHeroesArr().then( heroes =>{
+    console.table(heroes);
+    console.timeEnd('await')
+})
+
+;

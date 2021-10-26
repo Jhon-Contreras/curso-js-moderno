@@ -15,6 +15,8 @@ const heroes = {
     }
 }
 
+
+// buscar heroe con promesas 
 export const buscarHeroe = (id) =>{
     const heroe = heroes[id];
 
@@ -24,7 +26,10 @@ export const buscarHeroe = (id) =>{
     //reject: cuando la promesa falla
     return new Promise( (resolve, reject)=>{
         if(heroe){
-            resolve(heroe);
+            setTimeout( () =>{
+                resolve(heroe);
+            }, 1000)
+           
         } else{
             reject(`No existe un heroe con el id ${ id }`);
         }
@@ -34,7 +39,7 @@ export const buscarHeroe = (id) =>{
 }
 
 //
-// FORMA ASYNC 
+//Buscar heroe con ASYNC 
 //
 
 
@@ -47,7 +52,7 @@ export const buscarHeroeAsync = async(id) =>{
     if(heroe){
        return heroe; //con async retornamos el heroe, es igual al resolve(heroe)
     } else{
-        // throw Error(`No existe un heroe con el id ${ id }`); //para errores mas amplios
+        // throw Error(`No existe un heroe con el id ${ id }`); //para errores mas amplios y desconocidos para obtener mas informacion
         throw `No existe un heroe con el id ${ id }`; //manejo de errores
     }
 
