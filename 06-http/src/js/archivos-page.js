@@ -1,3 +1,4 @@
+import { subirImagen } from './subir-imagen-provider';
 
 // contenedor de la app 
 const containerApp = document.querySelector('#container-app');
@@ -30,6 +31,8 @@ const eventos = () =>{
     inputFileItem.addEventListener('change', (event)=>{
        const file = event.target.files[0];
        console.log(file);
+       subirImagen(file).then(url => imgFoto.src = url);
+
     })
 }
 
